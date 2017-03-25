@@ -11,6 +11,10 @@ urls = (
     '/postregistration', 'PostRegistration',
     '/check-login', 'CheckLogin',
     '/post-activity', 'PostActivity'
+    '/profile/(.*)/info', 'UserInfo',
+    '/settings', 'UserSettings',
+    '/update-settings', 'UpdateSettings',
+    '/profile/(.*)', 'UserProfile'
 )
 
 
@@ -81,6 +85,59 @@ class PostActivity:
         post_model = Posts.Posts()
         post_model.insert_post(data)
         return "success"
+
+
+class UserProfile:
+    def GET(self):
+        data = type('obj', (object,), {"username": "felix", "password": "avocado1"})
+
+        login = LoginModel.LoginModel()
+        isCorrect = login.check_user(data)
+
+        if isCorrect:
+            session_data["user"] = isCorrect
+
+        post_model = Posts.Posts()
+        posts = post_model.get_user_posts(user)
+        return render.Profile(posts)
+
+
+class UserInfo:
+    def GET(self):
+        data = type('obj', (object,), {"username": "felix", "password": "avocado1"})
+
+        login = LoginModel.LoginModel()
+        isCorrect = login.check_user(data)
+
+        if isCorrect:
+            session_data["user"] = isCorrect
+
+        return render.Info()
+
+
+class UserSettings:
+    def GET(self):
+        data = type('obj', (object,), {"username": "felix", "password": "avocado1"})
+
+        login = LoginModel.LoginModel()
+        isCorrect = login.check_user(data)
+
+        if isCorrect:
+            session_data["user"] = isCorrect
+
+        return render.Settings()
+
+
+class UpdatingSettings:
+    def POST(self):
+        data = web.input()
+        data.username = session_data["user"]["username"]
+
+        settings_model = LoginModel.LoginModel()
+        if settings_model.update_info(data):
+            return "success"
+        else:
+            return "A fatal error has occurred."
 
 class Logout:
     def GET(self):
