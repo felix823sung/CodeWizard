@@ -1,5 +1,6 @@
 import pymongo, bcrypt
 from pymongo import MongoClient
+import datetime
 
 class Posts:
 
@@ -18,7 +19,7 @@ class Posts:
         return post
 
     def get_all_posts(self):
-        all_posts = self.Posts.find()
+        all_posts = self.Posts.find().sort("date_added", -1)
         new_posts = []
 
         for post in all_posts:

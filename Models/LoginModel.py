@@ -25,3 +25,7 @@ class LoginModel:
         }, {"$set": data})
 
         return True
+
+    def get_profile(self, user):
+        user_info = self.Users.find_one({"username": user})
+        return user_info
