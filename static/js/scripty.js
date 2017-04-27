@@ -85,4 +85,19 @@ $(document).ready(function(){
             }
         });
     });
+
+    $(document).on("submit", ".comment-form", function(e){
+        e.preventDefault();
+
+        var form = $(this).serialize();
+        $.ajax({
+            url: "/submit-comment",
+            type: "POST",
+            data: form,
+            dataType: "json",
+            success: function(res){
+                console.log(res);
+            }
+        });
+    });
 });

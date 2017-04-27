@@ -15,6 +15,7 @@ urls = (
     '/settings', 'UserSettings',
     '/update-settings', 'UpdateSettings',
     '/profile/(.*)', 'UserProfile'
+    '/submit-comment', "SubmitComment"
 )
 
 
@@ -114,6 +115,18 @@ class UpdatingSettings:
             return "success"
         else:
             return "A fatal error has occurred."
+
+class SubmitComment:
+    def POST(self):
+        data = web.input()
+        data.username = session_data["user"]["username"]
+
+        post_model = Posts.Posts()
+        added_comment = post_model.add_comment(data)
+        if added_comment:
+            return added_comment
+        else:
+            return {"error": "403"}
 
 class Logout:
     def GET(self):

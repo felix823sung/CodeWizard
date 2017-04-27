@@ -12,9 +12,7 @@ class RegisterModel:
     def insert_user(self, data):
         hashed = bcrypt.hashpw(data.password.encode(), bcrypt.gensalt())
 
-        id = self.Users.insert({"username": data.username, "name": data.display_name, "password": hashed, "email": data.email})
+        id = self.Users.insert({"username": data.username, "name": data.name, "password": hashed,
+                                "email": data.email, "avatar": "", "background": "", "about": "",
+                                "hobbies": "", "birthday": ""})
         print("uid is", id)
-        myuser = self.Users.find_one({"username": data.username})
-
-        if bcrypt.checkpw("avocado1".encode(), myuser["password"]):
-            print("this matches")

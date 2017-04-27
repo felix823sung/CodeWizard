@@ -21,7 +21,7 @@ $def with (posts)
                     <li><a href="#"><span class="mdi mdi-help-circle"> </span> Help</a></li>
 
                 </ul>
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="grid">
                     <div class="grid-sizer"></div>
                     <div class="post-box post-card">
@@ -37,6 +37,7 @@ $def with (posts)
                             <div class="header">
                                 <div class="avatar"></div>
                                 <a href="/profile/$post['username']">$post['user']['name']</a>
+                                <span class="timestamp">$post['timestamp']</span>
                             </div>
                             <div class="content">
                                 $post['content']
@@ -48,6 +49,30 @@ $def with (posts)
 
                                 <button class="btn btn-round waves-effect btn-default btn-raised btn-share"><span class="mdi mdi-share"></span></button>
 
+                            </div>
+                            <div class="comments">
+                                $for comment in $post["comments"]:
+                                    <div class="comment">
+                                        <div class="header">
+                                            <div class="avatar"></div>
+                                            <span class="comment-timestamp pull-right">Posted $comment['timestamp']</span>
+                                            <a href="/profile/$comment['username']">$comment['user']['name']</a><br />
+                                            <span class="comment-content">$comment['content']</span>
+                                        </div>
+                                    </div>
+
+                                <div class="comment add">
+                                    <div class="header">
+                                        <div class="avatar"></div>
+                                        <form class="comment-form">
+                                            <input name="post_id" class="hidden" value="$post['_id']" />
+                                            <textarea name="comment-text" class="form-control" placeholder="Write a comment"></textarea>
+                                            <button type="submit" class="btn btn-info btn-raised waves-effect btn-sm pull-right">Add Comment</button>
+                                        </form>
+
+                                    </div>
+                                    
+                                </div>
                             </div>
                         </div>
 
