@@ -16,9 +16,9 @@
         </ul>
         <div class="col-md-12">
             <div class="profile-header">
-                <div class="background-image" style="background:url('/static/img/background.jpg');">
+                <div class="background-image" style="background:url($session['user']['background');">
                     <div class="avatar">
-                        <img src="/static/img/felix.jpg" class="profile-avatar"/>
+                        <img src="$session['user']['avatar']" class="profile-avatar"/>
                         <h2 class="profile-name">$session['user']['name']</h2>
                         <span class="profile-headline">Nothing</span>
                     </div>
@@ -67,7 +67,12 @@
                     <span class="post-subtitle">Avatar</span>
                     <form id="avatar-upload" method="POST" enctype="multipart/form-data" action="/upload-image/avatar">
                         <input type="file" name="background" class="" />
-                        <button type="sybmit" class="btn btn-info btn-raised waves-effect">Save</button>
+                        <button type="submit" class="btn btn-info btn-raised waves-effect">Save</button>
+                    </form>
+                    <span class="post-subtitle">Background Image</span>
+                    <form id="background-upload" method="POST" enctype="multipart/form-data" action="/upload-image/background">
+                        <input type="file" name="background" class="" />
+                        <button type="submit" class="btn btn-info btn-raised waves-effect">Save</button>
                     </form>
                 </div>
             </div>

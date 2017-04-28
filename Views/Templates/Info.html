@@ -19,19 +19,19 @@ $def with (user_info)
         </ul>
         <div class="col-md-12">
             <div class="profile-header">
-                <div class="background-image" style="...">
+                <div class="background-image" style="background:url($user_info['background']);">
                     <div class="avatar">
-                        <img src="/static/img/felix.jpg" class="profile-avatar"/>
+                        <img src="$user_info['avatar']" class="profile-avatar"/>
                         <h2 class="profile-name">$user_info["name"]</h2>
                         <span class="profile-headline">Nothing</span>
                     </div>
                 </div>
                 <div class="profile-nav">
                     <ul class="nav navbar-nav navbar-center">
-                        <li><a href="/profile/felix">Activity</a></li>
-                        <li class="active"><a href="/profile/felix/info">Info</a></li>
-                        <li><a href="/profile/felix/code">Code</a></li>
-                        <li><a href="/profile/felix/contact">Contact</a></li>
+                        <li><a href="/profile/$user_info['username']>Activity</a></li>
+                        <li class="active"><a href="/profile/$user_info['username']/info">Info</a></li>
+                        <li><a href="/profile/$user_info['username']/code">Code</a></li>
+                        <li><a href="/profile/$user_info['username']/contact">Contact</a></li>
                     </ul>
                 </div>
             </div>
